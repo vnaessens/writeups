@@ -61,16 +61,16 @@ return Math.round(a/864e5) // 864e5 means 864 * 10^5 = 86400 * 1000 = the number
 ```
 From https://developer.mozilla.org/en-US/docs/Web/java-script/Reference/Global_Objects/Date :
 > Date objects contain a Number that represents milliseconds since 1 January 1970 UTC
-So, in function `Co` above, `a` is equal to number of days * 86400 * 1000 between Date e and Date t, thus function `Co` returns the number of days between Date e and Date t.
+
+So, in function `Co` above, `a` is equal to number of days * 86400 * 1000 between `Date e` and `Date t`, thus function `Co` returns the number of days between `Date e` and `Date t`.
 
 Looking for variable `To` yields :
 `var To=new Date(2021,5,19,0,0,0,0);` equivalent to May 19th 2021 0h0m0s.
 
 Putting all things together :
+* array ko[] contains the list of solutions ;
+* `var To=new Date(2021,5,19,0,0,0,0)` is the "starting" date
 ```javascript
-array ko[] contains the list of solutions ;
-var To=new Date(2021,5,19,0,0,0,0) is the "starting" date ;
-
 function Co(e,t){
 var n=new Date(e),a=new Date(t).setHours(0,0,0,0)-n.setHours(0,0,0,0);
 return Math.round(a/864e5)
@@ -87,6 +87,6 @@ return Co(To,e)
 }
 ```
 
-Function `Oo` computes `t` = the number of elapsed days since May 19th 2021 modulo the size of the array `ko[]` holding the words and returns `ko[t]`.
+* Function `Oo` computes `t` = the number of elapsed days since May 19th 2021 modulo the size of the array `ko[]` holding the words and returns `ko[t]`.
 
 OK, I have seen enough ugly java-script code, my eyes are shedding tears of blood :see_no_evil:
