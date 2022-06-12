@@ -1,8 +1,8 @@
 https://tryhackme.com/room/vulnversity
 
-## Reconnaissance
+## Task 2 : Reconnaissance
 
-Scan the box, how many ports are open ?
+#### Scan the box, how many ports are open ?
 
 nmap -sV -Sc -p-
 
@@ -91,29 +91,29 @@ nmap -sV -Sc -p-
 
 6
 
-What version of the squid proxy is running on the machine ?
+#### What version of the squid proxy is running on the machine ?
 
-From previous answer, see output of previous command.
+See output of previous command above.
 
-How many ports will nmap scan if the flag -p-400 was used ?
+#### How many ports will nmap scan if the flag -p-400 was used ?
 
 Nmap will scan port numbers from 1 to 400 (both included).
 
-Using the nmap flag -n what will it not resolve ?
+#### Using the nmap flag -n what will it not resolve ?
 
 According to Nmap documentation, flag -n never does DNS resolution.
 
-What is the most likely operating system this machine is running ?
+#### What is the most likely operating system this machine is running ?
 
 Ubuntu
 
-What port is the web server running on ?
+#### What port is the web server running on ?
 
 3333
 
-## Locating directories using GoBuster
+## Task 3 : Locating directories using GoBuster
 
-What is the directory that has an upload form page ?
+#### What is the directory that has an upload form page ?
 
 gobuster dir -u http://10.10.170.87:3333 -w /usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt 
 
@@ -157,12 +157,11 @@ gobuster dir -u http://10.10.170.87:3333 -w /usr/share/wordlists/dirbuster/direc
 
 Visit all directories found ; http://10.10.170.87:3333/internal/ is the one with an upload form.
 
-## Compromise the webserver
-
+## Task 4 : Compromise the webserver
 
 Try upload a few file types to the server, what common extension seems to be blocked?
 
 .php
 
-## Privilege escalation
+## Task 5 : Privilege escalation
 
