@@ -173,18 +173,20 @@ Create a text file 'phpext.txt' with common PHP extensions :
 Start BurpSuite and configure the proxy to intercept the traffic from http://10.10.170.87:3333/internal/
 
 Upload a .php file, capture it in Burp proxy and forward it to the intruder :
-![alt-title](/Vulniversity1.png)
+![alt-title](/TryHackMe/Vulniversity1.png)
 
-Click on 'Payloads' tab and select the 'Sniper' attack :
-![alt-title](/Vulniversity2.png)
+In the Intruder, click on 'Positions' tab and select the 'Sniper' attack.
+Modify the captured HTTP request like that :
+![alt-title](/TryHackMe/Vulniversity2.png)
 
-Then, click on the 'Positions' tab and modify the captured HTTP request like that :
-![alt-title](/Vulniversity3.png)
+Then, click on the 'Payloads' tab and select the text file 'phpext.txt' containing the list of extensions :
+![alt-title](/TryHackMe/Vulniversity3.png)
 
-and launch the attack.
-Check the results, by clicking on the 'Response' tab :
-![alt-title](/Vulniversity4.png)
-![alt-title](/Vulniversity5.png)
+and click on button 'Start attack'.
+
+Check the results by clicking on the 'Response' tab :
+![alt-title](/TryHackMe/Vulniversity4.png)
+![alt-title](/TryHackMe/Vulniversity5.png)
 
 Download the following reverse PHP shell [here](https://github.com/pentestmonkey/php-reverse-shell/blob/master/php-reverse-shell.php) and replace the line `$ip = '127.0.0.1';  // CHANGE THIS` with the IP of the attack machine.
 
@@ -194,7 +196,7 @@ Start listening to incoming connections using netcat : `nc -lvnp 1234`
 
 Upload 'php-reverse-shell.phtml' and navigate to http://<ip>:3333/internal/uploads/php-reverse-shell.phtml
 This will execute the payload and will give a reverse shell :
-![alt-title](/images/Vulniversity6.png)
+![alt-title](/images/TryHackMe/Vulniversity6.png)
   
 #### What is the name of the user who manages the webserver ?
   
