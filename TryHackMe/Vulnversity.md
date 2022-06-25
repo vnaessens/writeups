@@ -196,7 +196,7 @@ Start listening to incoming connections using netcat : `nc -lvnp 1234`
 
 Upload 'php-reverse-shell.phtml' and navigate to http://<ip>:3333/internal/uploads/php-reverse-shell.phtml
 This will execute the payload and will give a reverse shell :
-![alt-title](/images/TryHackMe/Vulniversity6.png)
+![alt-title](/TryHackMe/Vulniversity6.png)
   
 #### What is the name of the user who manages the webserver ?
   
