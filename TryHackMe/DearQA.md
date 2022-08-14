@@ -4,6 +4,55 @@
 
 `rabin2 -I DearQA.DearQA`
 
+Analysis in Radare2 (for example) shows that there is a function main() which does almost nothing : it asks for a name, calls scanf() with a 32-byte buffer and printf() the string.
+
+But, there is also  a function vuln() :
+
+`; Attributes: bp-based frame`
+
+`public vuln`
+
+`vuln proc near`
+
+`push    rbp`
+
+`mov     rbp, rsp`
+
+`mov     edi, offset s   ; "Congratulations!"`
+
+`call    \_puts`
+
+`mov     edi, offset aYouHaveEntered ; "You have entered in the secret function"...`
+
+`call    \_puts`
+
+`mov     rax, cs:stdout@@GLIBC_2_2_5`
+
+`mov     rdi, rax        ; stream`
+
+`call    \_fflush`
+
+`mov     edx, 0          ; envp`
+
+`mov     esi, 0          ; argv`
+
+`mov     edi, offset path ; "/bin/bash"`
+
+`call    \_execve`
+
+`pop     rbp`
+
+`retn`
+
+`vuln endp`
+
+This could give a root access :
+
+`mov     edi, offset path ; "/bin/bash"` 
+
+`call    _execve`
+
+
 ### Task 2
 
 #### What is the binary architecture ?
